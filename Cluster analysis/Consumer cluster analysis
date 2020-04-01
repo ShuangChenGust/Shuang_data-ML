@@ -1,33 +1,37 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[4]:
 
 
 #This code is used to analysis customers, the data set includes three features: time to last consuming. frequency of consuming,
 # total money of spending. I am going to use K-means to cluster customers.
 
 
-# In[2]:
+# In[22]:
 
 
 import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from IPython.core.interactiveshell import InteractiveShell
+InteractiveShell.ast_node_interactivity = 'all'
 
 
-# In[3]:
+# In[23]:
 
 
 #imput data
 inputfile = 'consumption_data.xls'
 
 
-# In[4]:
+# In[24]:
 
 
 outputfile = 'data_type.xls'
 
 
-# In[5]:
+# In[25]:
 
 
 k = 3  # cluster numbers
@@ -35,58 +39,124 @@ iteration = 500  # iteration times
 data = pd.read_excel(inputfile,index_col='Id') 
 
 
-# In[6]:
+# In[32]:
 
 
-R is time to last consuming. F is frequency of consuming, M is total money of spending
+# R is time to last consuming. F is frequency of consuming, M is total money of spending
 data[:3]
+data.describe()
 
 
-# In[7]:
+# In[27]:
+
+
+# Check null value:
+data.isnull().sum()
+
+
+# In[28]:
+
+
+# matplotlib inline 箱线图发现R 时间超出上界的数据量较多。
+plt.rcParams['font.sans-serif'] = ['SimHei']    #用来正常显示中文标签
+plt.rcParams['axes.unicode_minus'] = False      #用来正常显示负号
+data.plot(kind='box', sharey=False, sharex=False,subplots=True, figsize=(15,8))
+
+
+# In[34]:
+
+
+#Delete the date larger than 90.
+data = data[data['R']<90]
+
+
+# In[37]:
+
+
+#离群点分析
+data.loc[data['M'][data['M']==data['M'].max()].index.values]
+
+
+# In[40]:
+
+
+#Calculate the correlation of the features
+data.corr()
+#0.24 low correlation
+
+
+# In[41]:
+
 
 
 #standalize dataset
 data_zs = 1.0 * (data - data.mean())/data.std()
 
 
-# In[8]:
+# In[42]:
 
 
 from sklearn.cluster import KMeans 
 
 
-# In[10]:
+# In[43]:
 
 
 # Init the model, 3 clusters, 500 times
 model = KMeans(n_clusters=k,n_jobs=4,max_iter=iteration)
 
 
-# In[11]:
+# In[44]:
 
 
 #Beigin Clustering
 model.fit(data_zs)
 
 
-# In[12]:
+# In[45]:
 
 
 r = pd.concat([data,pd.Series(model.labels_,index=data.index)],axis=1)  # 将分类结果model.labels_打到数据data上去,axis＝1代表横向连接
 r.columns=list(data.columns)+[u'cluster']  # 给新加的列赋一个列名
 
 
-# In[13]:
+# In[49]:
+
+
+#Output the sample numbers for each cluster.
+cluster_counts = pd.Series(model.labels_).value_counts()
+cluster_centers = pd.DataFrame(model.cluster_centers_)
+clusters = pd.concat([cluster_centers,cluster_counts], axis=1)
+clusters.columns = list(data.columns) + [u'numbers']
+clusters
+
+
+# In[56]:
 
 
 r[:3]
 
 
-# In[14]:
+# In[57]:
 
 
 # Output to excel
 r.to_excel(outputfile) 
+
+
+# In[61]:
+
+
+data_out = pd.concat([data, pd.Series(model.labels_, index=data.index,name='cluster')], axis=1)
+data_out.index.names=['custermer_id']
+data_out.head(5)
+
+
+# In[64]:
+
+
+for label in range(k):
+    data[data_out[u'cluster']==label].plot(kind='kde', figsize=(10,8),linewidth=2, subplots=True, sharex=False,title='Cluster%distribution' % label)  
 
 
 # In[ ]:
