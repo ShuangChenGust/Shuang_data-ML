@@ -1,0 +1,212 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[3]:
+
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.datasets import load_iris #导入数据集iris  
+get_ipython().run_line_magic('matplotlib', 'inline')
+
+
+# In[4]:
+
+
+iris = load_iris() #载入数据集
+print(iris.data)  #打印输出显示
+
+
+# In[5]:
+
+
+# 绘制数据集；Draw the dataset
+from sklearn import datasets
+import matplotlib.pyplot as plt
+
+# Loading dataset
+iris_df = datasets.load_iris()
+
+# Available methods on dataset dir() 是一个内置函数，用于列出对象的所有属性及方法。
+print(dir(iris_df))
+
+# Features
+print(iris_df.feature_names)
+
+# Targets
+print(iris_df.target)
+
+# Target Names
+print(iris_df.target_names)
+label = {0: 'red', 1: 'blue', 2: 'green'}
+
+# Dataset Slicing
+x_axis = iris_df.data[:, 0]  # Sepal Length
+y_axis = iris_df.data[:, 2]  # Sepal Width
+
+# Plotting
+plt.scatter(x_axis, y_axis, c=iris_df.target)
+plt.show()
+
+
+# In[8]:
+
+
+iris.data.shape
+
+
+# In[11]:
+
+
+dataset = pd.read_csv('iris.csv')
+names = ['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'class']  
+dataset.hist() #数据直方图histograms
+
+
+# In[12]:
+
+
+print(dataset.describe())
+
+
+# In[15]:
+
+
+dataset.plot(x='SepalLengthCm', y='SepalWidthCm', kind='scatter') 
+#散点图，x轴表示sepal-length花萼长度，y轴表示sepal-width花萼宽度
+
+
+# In[16]:
+
+
+dataset.plot(kind='kde') 
+#KDE图，KDE图也被称作密度图(Kernel Density Estimate,核密度估计)
+
+
+# In[18]:
+
+
+# Kmeans/Importing Modules
+from sklearn import datasets
+from sklearn.cluster import KMeans
+
+# Loading dataset
+iris_df = datasets.load_iris()
+
+# Declaring Model
+model = KMeans(n_clusters=3)
+
+# Fitting Model
+model.fit(iris_df.data)
+
+# Predicitng a single input
+predicted_label = model.predict([[7.2, 3.5, 0.8, 1.6]])
+
+# Prediction on the entire data
+all_predictions = model.predict(iris_df.data)
+
+# Printing Predictions
+print(predicted_label)
+print(all_predictions)
+
+
+# In[19]:
+
+
+# TSNE 聚类
+# Importing Modules
+from sklearn import datasets
+from sklearn.manifold import TSNE
+import matplotlib.pyplot as plt
+
+# Loading dataset
+iris_df = datasets.load_iris()
+
+# Defining Model
+model = TSNE(learning_rate=100)
+
+# Fitting Model
+transformed = model.fit_transform(iris_df.data)
+
+# Plotting 2d t-Sne
+x_axis = transformed[:, 0]
+y_axis = transformed[:, 1]
+
+plt.scatter(x_axis, y_axis, c=iris_df.target)
+plt.show()
+
+
+# In[ ]:
+
+
+
+
+
+# In[23]:
+
+
+# 绘制数据集
+from sklearn import datasets
+import matplotlib.pyplot as plt
+ 
+#加载数据集，是一个字典类似Java中的map
+lris_df = datasets.load_iris()
+ 
+ 
+#挑选出前两个维度作为x轴和y轴，你也可以选择其他维度
+x_axis = lris_df.data[:,0]
+y_axis = lris_df.data[:,2]
+ 
+#c指定点的颜色，当c赋值为数值时，会根据值的不同自动着色
+plt.scatter(x_axis, y_axis, c=lris_df.target)
+plt.show()
+
+
+# In[24]:
+
+
+from sklearn import datasets
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+ 
+#加载数据集，是一个字典类似Java中的map
+lris_df = datasets.load_iris()
+ 
+#挑选出前两个维度作为x轴和y轴，你也可以选择其他维度
+x_axis = lris_df.data[:,0]
+y_axis = lris_df.data[:,2]
+ 
+ 
+#这里已经知道了分3类，其他分类这里的参数需要调试
+model = KMeans(n_clusters=3)
+ 
+#训练模型
+model.fit(lris_df.data)
+ 
+#选取行标为100的那条数据，进行预测
+prddicted_label= model.predict([[6.3, 3.3, 6, 2.5]])
+ 
+#预测全部150条数据
+all_predictions = model.predict(lris_df.data)
+plt.scatter(x_axis, y_axis, c=all_predictions)
+plt.show()
+
+
+# In[25]:
+
+
+data = iris
+
+
+# In[27]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
