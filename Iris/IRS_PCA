@@ -1,0 +1,73 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[4]:
+
+
+import matplotlib.pyplot as plt#画图工具
+from mpl_toolkits.mplot3d import Axes3D
+from sklearn import datasets
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.datasets import load_iris #导入数据集iris  
+
+data= load_iris()
+print (data)
+
+
+# In[5]:
+
+
+# 选取三个维度制图
+# 在X[y==i ,0], X[y==i, 1], X[y==i,2]中，通过0，1，2选择了三个特征
+X=data['data']
+y=data['target']
+ax = Axes3D(plt.figure())
+for c,i,target_name in zip('rgb',[0,1,2],data.target_names):
+    ax.scatter(X[y==i ,0], X[y==i, 1], X[y==i,2], c=c, label=target_name)
+ax.set_xlabel(data.feature_names[0])
+ax.set_ylabel(data.feature_names[1])
+ax.set_zlabel(data.feature_names[2])
+ax.set_title("Iris")
+plt.legend()
+plt.show()
+
+
+# In[6]:
+
+
+# 选取两个特征查看数据分布情况
+ax = plt.figure()
+for c, i, target_name in zip("rgb", [0, 1, 2], data.target_names):
+    plt.scatter(X[y == i, 0], X[y == i, 1], c=c, label=target_name)
+plt.xlabel(data.feature_names[0])
+plt.ylabel(data.feature_names[1])
+plt.title("Iris")
+plt.legend()
+plt.show()
+
+
+# In[7]:
+
+
+# 利用PCA降维，降到二维
+
+from sklearn.decomposition import PCA
+pca = PCA(n_components=2)
+X_p =pca.fit(X).transform(X)
+ax = plt.figure()
+for c, i, target_name in zip("rgb", [0, 1, 2], data.target_names):
+    plt.scatter(X_p[y == i, 0], X_p[y == i, 1], c=c, label=target_name)
+plt.xlabel('Dimension1')
+plt.ylabel('Dimension2')
+plt.title("Iris")
+plt.legend()
+plt.show()
+
+
+# In[ ]:
+
+
+
+
