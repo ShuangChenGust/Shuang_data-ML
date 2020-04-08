@@ -1,0 +1,115 @@
+Thanks for Andre Ye.
+Source: https://towardsdatascience.com/test-your-skills-26-more-data-science-interview-questions-answers-9e7dfad33353
+
+Here are 26 more data science interview questions and answers (here are the first 26).The questions are organized in a general flow of mathematics and statistics to algorithms to deep learning to NLP, with data organization questions interspersed. I would recommend just looking at the question and taking a moment to think of the answer before continuing to verify your answer.
+Whether you’re a college student or an experienced professional, everyone can spend some time to test (or refresh) their skills!
+Can you answer them all?
+
+Source: Giphy
+1 | What are some forms of selection bias you may encounter in data?
+Sampling bias is a systematic error due to a non-random sample of a population causing some members of the population to be less included than others, such as low-income families being excluded from an online poll.
+Time interval bias is when a trial may be terminated early at an extreme value (usually for ethical reasons), but the extreme value is likely to be reached by the variable with the largest variance, even if all variables have a similar mean.
+Data bias is when specific subsets of data are chosen to support a conclusion or rejection of bad data on arbitrary grounds, instead of according to a previously stated or generally agreed on criteria.
+Lastly, attrition bias is a form of selection bias caused by loss of participants discounting trial subjects that did not run to completion.
+2 | Define: Error Rate, Accuracy, Sensitivity/Recall, Specificity, Precision, and F-Score.
+Where T is True, F is False, P is Positive, and N is Negative, each denoting the number of items in a confusion matrix that satisfy the condition:
+
+Source. Image free to share and use commercially.
+Error Rate: (FP + FN) / (P + N)
+Accuracy: (TP + TN) / (P + N)
+Sensitivity/Recall: TP / P
+Specificity: TN / N
+Precision: TP / (TP + FP)
+F-Score: Harmonic mean of precision and recall.
+3 | What is the difference between correlation and covariance?
+Correlation is considered as the best technique for measuring and also for estimating the quantative relationship between two variables, and measures how strongly two variables are related.
+Covariance measures the extent to which two random variables change in cycle. Rephrased, it explains the systematic relation between a pair of random variables, wherein changes in one variable reciprocal by a corresponding change in another variable.
+4 | Why is A/B testing effective?
+A/B testing is a hypothesis testing for a randomized experiment with two variables A and B. Its goal is to identify any changes in, say, a webpage, where customers in group A are greeted with “Good afternoon” whereas customers in group B are greeted with “Welcome”, to see which one can boost sales. A/B testing is effective because it minimizes conscious bias — those in group A do not know that they are in group A, or that there even is a group B, and vice versa. It is a good way to get data on honest variable. However, A/B testing is difficult to perform on any context other than Internet businesses.
+
+Source. Image free to share and use commercially.
+5 | How would you generate a random number between 1 and 7 with only one die?
+One solution is to roll the die twice. This means there are 6 x 6 = 36 possible outcomes. By excluding one combination (say, 6 and 6), there are 35 possible outcomes. This means that if we assign five combinations of rolls (order does matter!) to one number, we can generate a random number between 1 and 7.
+For instance, say we roll a (1, 2). Since we have (hypothetically) defined the roll combinations (1, 1), (1, 2), (1, 3), (1, 4), and (1, 5) to the number 1, the randomly generated number would be 1.
+6 | Differentiate between univariate, bivariate, and multivariate analaysis.
+Univariate analyses are statistical analysis techniques that are performed on only one variable. This can involve pie charts, distribution plots, and boxplots.
+Bivariate analysis attempt to understand the relaitonship between two variables. This can include scatterplots or contour plots, as well as time series forecasting.
+Multivariate analysis deals with more than two variables to understand the effect of those variable on a target variable. This can include training neural networks for predictions or SHAP values/permutation importance to find the most important feature. It could also include scatterplots with a third feature like color or size.
+7 | What is cross-validation? What problems does it try to solve? Why is it effective?
+Cross validation is a method of evaluating how a model generalizes to an entire dataset. A traditional train-test-split method, in which part of the data is randomly selected to be training data and the other fraction test data, may mean that the model performs well on certain randomly selected fractions of test data and poorly on other randomly selected test data. In other words, the performance is not nearly indicative of the model’s performance as it is of the randomness of the test data.
+
+Source. Image free to share and use commercially.
+Cross validation splits the data into n segments. The model is trained on n-1 segments of the data and is tested on the remaining segment of data. Then, the model is refreshed and trained on a different set of n-1 segments of data. This repeats until the model has predicted values for the entire data (of which the results are averaged). Cross validation is helpful because it provides a more complete view of a model’s performance on the entire dataset.
+8 | What does the ‘naive’ in ‘Naive Bayes’ mean?
+The Naive Bayes Algorithm is based on Bayes’ Theorem, which describes the probability of an event, based on prior knowledge of conditions that might be related to the vent. The algorithm is considered to be ‘naive’ because it makes a variety of assumptions that may or may not be correct. This is why it can be very powerful when used correctly — it can bypass knowledge other models must find because it assumes that it is true.
+9 | What are the different kernels in SVM?
+There are four types of kernels in SVM:
+Linear Kernel
+Polynomial Kernel
+Radial Basis Kernel
+Sigmoid Kernel
+10 | What is a solution to overfitting in Decision Trees?
+Decision Trees often have high bias because the nature of the algorithm involves finding very niche patterns in data and creating a specific node just to address that. If let wild, a decision tree will create so many nodes that it will perform perfectly on the training data but fail at the testing data. One method to fix overfitting in decision trees is called pruning.
+
+A decision tree that has overfit to the data. Source. Image free to share and use commercially.
+Pruning is a method of reducing the size of decision trees by removing sections of the tree that provide little power to classify. This helps generalize the decision tree and forces it to only create nodes that are imperative to the data structure and not simply noise.
+11 | Explain and give examples of collaborative filtering, content filtering, and hybrid filtering.
+Collaborative filtering is a form of a recommender system that solely relies on user ratings to determine what a new user might like next. All product attributes are either learned through user interactions or discarded. One example of collaborative filtering is matrix factorization.
+Content filtering is another form of recommender system that only relies on intrinsic attributes of products and customers, such as product price, customer age, etc., to make recommendations. One way to achieve content filtering is to find a similarity between a profile vector and an item vector, such as cosine similarity.
+Hybrid filtering takes the best from both worlds and combines content filtering recommendations and collaborative filtering recommendations to achieve a better recommendation. However, which filter to use depends on the real-world context — hybrid filtering may not always be the definitive answer.
+12 | What is the difference between bagging and boosting in ensembles?
+Bagging is an ensemble method, in which several datasets are prepared by randomly selecting data from the main dataset (there will be overlap within the several sub-dataset). Then, several models are trained on one of the several sub-datasets, and their final decisions are aggregated through some function.
+Boosting is an iterative technique that adjusts the weight of an observation on the last classification. If an observation was classified correctly, it tries to increase the weight of the observation, and vice versa. Boosting decreases the bias error and builds strong predictive models.
+13 | What is the difference between hard and soft voting in ensembles?
+Hard voting is when each model’s final classification (for example, 0 or 1) is aggregated, perhaps through the mean or mode.
+Soft voting is when each model’s final probabilities (for example, 85% sure of classification 1) are aggregated, most likely through the mean.
+Soft voting may be advantageous in certain cases but could lead to overfitting and a lack of generalization.
+
+Source: Giphy.
+14 | You have 5GB RAM in your machine and need to train your model on a 10 GB dataset. How do you address this?
+For SVM, a partial fit would work. The dataset could be split into several smaller-size datasets. Because SVM is a low-computational cost algorithm, it may be the best case in this scenario.
+In the case that the data is not suitable for SVM, a Neural Network with a small enough batch size could be trained on a compressed NumPy array. NumPy has several tools for compressing large datasets, which are integrated into common neural network packages like Keras/TensorFlow and PyTorch.
+15 | Deep learning theory has been around for quite a long time, but only recently has it gained much popularity. Why do you think deep learning has surged so much in recent years?
+Deep learning development is picking up pace quickly because only recently has it been necessary. Recent improvements in a shift from physical experiences to online ones mean that more data can be collected. Because of the transition of going online, there are more opportunities for deep learning to boost profits and increase customer retention that are not possible in, say, physical grocery stores. It is worthwhile noting that the two biggest machine learning models in Python (TensorFlow & PyTorch) were created by large corporate companies Google and Facebook. In addition, developments in GPU mean that models can be trained more quickly.
+(Although this question is not strictly theory-related, being able to answer it means you also have your eye on the bigger picture of how your analysis can be used in a corporate sense.)
+16 | How would you initialize weights in a neural network?
+The most conventional way to initialize weights is randomly, initializing them close to 0. Then, a properly chosen optimizer can take the weights in the right direction. If the error space is too steep, it may be difficult for an optimizer to escape a local minima. In this case, it may be a good idea to initialize several neural networks, each in different locations of the error space, so that the chance one finds a global minima increases.
+17 | What is the consequence of not setting an accurate learning rate?
+If the learning rate it too low, the training of the model will progress very slowly, as the weights are making minimal updates. However, if the learning rate is set too high, this may cause the loss function to jump erratically due to drastic updates in weights. The model may also fail to converge to an error or may even diverge in the case that the data is too chaotic for the network to train.
+18 | Explain the difference between an epoch, a batch, and an iteration.
+Epoch: Represents one run through the entire dataset (everything put into a training model).
+Batch: Because it is computationally expensive to pass the entire dataset into the neural network at once, the dataset is divided into several batches.
+Iteration: The number of times a batch is run through each epoch. If we have 50,000 data rows and a batch size of 1,000, then each epoch will run 50 iterations.
+19 | What are three primary convolutional neural network layers? How are they commonly put together?
+There are typically four different layers in a convolutional neural network:
+Convolutional layer: A layer that performs a convolutional operation that creates several picture windows, generalizing the image.
+
+Convolutional Layer. Source: Giphy.
+Activation layer (usually ReLU): Brings non-linearity to the network and converts all negative pixels to zero. The output becomes a rectified feature map.
+Pooling Layer: A down-sampling operation that reduces the dimensionality of a feature map.
+Usually, a convolutional layer is consisted of several iterations of convolutional layer, activation layer, and pooling layer. Then, it may be followed with one or two additional dense or dropout layers for further generalization, and finished with a fully connected layer.
+20 | What is a dropout layer and how does it help a neural network?
+A dropout layer reduces overfitting in a neural network by preventing complex co-adaptions in the training data. A dropout layer acts as a mask, randomly preventing connections to certain nodes. Rephrased, during training, about half of the neurons in a Dropout layer will be deactivated, forcing each node to carry more information that was left out by the deactivated neurons. Dropouts are sometimes used after max-pooling layers.
+
+Neural Network before/after applying dropout. Source. Image free to use with credit.
+21 | On a simplified and fundamental scale, what makes the newly developed BERT model better than traditional NLP models?
+Traditional NLP models, to familiarize themselves with the text, are given the task of predicting the next word in a sentence, for example: ‘dog’ in “It’s raining cats and”. Other models may additionally train their models to predict the previous word in a sentence, given the context after it. BERT randomly masks a word in the sentence and forces the model to predict that word with both the context before and after it, for example: ‘raining’ in “It’s _____ cats and dogs.”
+
+This means hat BERT is able to pick up on more complex aspects of language that cannot simply be predicted by previous context. BERT has many other features like various layers of embeddings, but on a fundamental scale, its success comes from how it reads the text.
+22 | What is Named-Entity Recognition?
+NER, also known as entity identification, entity chunking, or entity extraction, is a subtask of information extraction that tries to locate and classify named entities mentioned in unstructured text into categories such as names, organization, locations, monetary values, time, etc. NER attempts to separate words that are spelled the same but mean different things and to correctly identify entities that may have sub-entities in their name, like ‘America’ in ‘Bank of America’.
+23 | You are given a large dataset of tweets, and your task is to predict if they are positive or negative sentiment. Explain how you would preprocess the data.
+Since tweets are full of hashtags that may be of valuable information, the first step would be to extract hashtags and perhaps create a one-hot encoded set of features, in which the value is ‘1’ for a tweet if it has a hashtag and ‘0’ if it doesn’t. The same can be done with @ characters (whichever account the tweet is directed at may be of importance). Tweets are also cases of writing that is compressed (since there is a character limit), so there will probably be lots of purposeful misspellings that will need to be corrected. Perhaps the number of misspellings in a tweet would be helpful as well — maybe angry tweet have more misspelled words.
+Removing punctuation, albeit standard in NLP preprocessing, may be skipped in this case because the use of exclamation marks, question marks, periods, etc. may be valuable when used in conjunction with other data. There may be three or more columns where the value for each row is the number of exclamation marks, question marks, etc. However, when feeding the data into a model the punctuation should be removed.
+Then, the data would be lemmatized and tokenized, and there is not just the raw text to feed into the model but also knowledge about hashtags, @s, misspellings, and punctuation, all of which will probably assist accuracy.
+24 | How might you find the similarity between two paragraphs of text?
+The first step is to convert the paragraphs into a numerical form, with some vectorizer of choice, like bag of words or TD-IDF. In this case, bag of words may be better, since the corpus (collection of texts) is not very large (2). In addition, it may be more true to the text, since TD-IDF is primarily for models. Then, one could use cosine similarity or Euclidean distance to compute the similarity between the two vectors.
+25 | In a corpus of N documents, one randomly chosen document contains a total of T terms. The term ‘hello’ appears K times in that document. What is the correct value for the product of TF (Term Frequency) and IDF (Inverse Document Frequency), if the term ‘hello’ appears in about one third of the total documents?
+The formula for Term Frequency if K/T, and the formula for IDF is the logarithm of the total documents over the number of documents containing the term, or log of 1 over 1/3, or log of 3. Therefore, the TF-IDF value for ‘hello’ is K * log(3)/T.
+26 | Is there a universal set of stop words? When would you increase the ‘strictness’ of stop words and when would you be more lenient on stop words? (Being lenient on stop words means decreasing the amount of stop words eliminated from the text).
+There are generally accepted stop words stored in the NLTK library in Python, but in certain contexts they should be lengthened or shortened. For example, if given a dataset of tweets, the stop words should be more lenient because each tweet does not have much content to begin with. Hence, more information will be packed into the brief amount of characters, meaning that it may be irresponsible to discard what we deem to be stop words. However, if given, say, a thousand short stories, we may want to be harsher on stop words to not only conserve computing time but also to differentiate more easily between each of the stories, which will probably all use many stop words several times.
+Thanks for reading!
+
+Source: Giphy
+How many did you get right? These questions targeted statistics, algorithms, deep learning, NLP, and data organization and understanding — it should be a good measure of your familiarity with data science concepts.
+If you haven’t already, check out 26 more data science interview questions & answers here.
