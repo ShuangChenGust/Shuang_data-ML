@@ -1,0 +1,57 @@
+#Simple linear regression, width and length
+import pandas as pd
+import numpy as np
+import pylab as pl
+import matplotlib.pyplot as plt
+
+from sklearn.datasets import load_iris
+# load data
+iris = load_iris()
+# Define a DataFrame
+df = pd.DataFrame(iris.data, columns = iris.feature_names)
+# take a look
+df.head()
+#len(df)
+
+df.corr()
+
+# rename the column name 
+df.columns = ['sepal_length','sepal_width','petal_length','petal_width']
+df.columns
+
+plt.matshow(df.corr())
+
+# save image
+fig,ax = plt.subplots(nrows = 1, ncols = 1) 
+ax.matshow(df.corr())
+fig.savefig('iris_corr.png')
+
+# Linear model
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
+
+lr = LinearRegression()
+X = df[['petal_length']]
+y = df['petal_width']
+lr.fit(X,y)
+# print the result
+lr.intercept_,lr.coef_
+
+# get y-hat Y hat (written ŷ ) is the predicted value of y (the dependent variable) in a regression equation. I
+yhat = lr.predict(X = df[['petal_length']])
+
+# MSE
+mean_squared_error(df['petal_width'],yhat)
+
+# lm plot
+plt.scatter(df['petal_length'],df['petal_width'])
+plt.plot(df['petal_length'],yhat)
+
+#import statsmodels.api as sm
+import statsmodels.api as sm
+
+linear_model = sm.OLS(y,X)
+
+results = linear_model.fit()
+
+results.summary()
