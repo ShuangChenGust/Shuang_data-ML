@@ -1,0 +1,74 @@
+# 总结-sklearn建模流程
+# sklearn建模流程
+
+# 建立模型
+
+# lrModel = sklearn.linear_model.LinearRegression()
+# 训练模型
+
+# lrModel.fit(x,y)
+# 模型评估
+
+# lrModel.score(x,y)
+# 模型预测
+
+# lrModel.predict(x)
+
+
+import numpy
+from pandas import read_csv
+from matplotlib import pyplot as plt
+from sklearn.linear_model import LinearRegression
+import pandas as pd
+data = pd.read_excel('Mall_customers.xlsx')
+data[:3]
+
+
+dataclean = data.rename(columns={'Annual Income (k$)' : 'income', 'Spending Score (1-100)' : 'spending'})
+
+plt.scatter(dataclean.income, dataclean.spending, dataclean.Age)
+
+dataclean.corr()
+
+import matplotlib
+
+
+from pandas.plotting import scatter_matrix
+
+font = {
+    'family':'SimHei'
+}
+matplotlib.rc('font',**font)
+
+scatter_matrix(
+    dataclean[["Age","income","spending"]], figsize = (10,10), diagonal = 'kid'
+)
+
+dataclean[["Age","income","spending"]].corr()
+x = dataclean[["Age","income"]]
+y = dataclean[["spending"]]
+
+from sklearn.linear_model import LinearRegression
+lrModel = LinearRegression()
+
+#train model
+lrModel.fit(x,y)
+
+#coefficient
+lrModel.coef_
+
+#intercept
+lrModel.intercept_
+
+#import statsmodels.api as sm
+import statsmodels.api as sm
+
+lrModel = sm.OLS(y,x)
+
+results = lrModel.fit()
+
+results.summary()
+
+# accuracy
+accuracy = lrModel.score(2,3)
+accuracy
